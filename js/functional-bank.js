@@ -1,8 +1,16 @@
-// deposit button 
-document.getElementById('deposit-button').addEventListener('click',function() {
-    const depositInput = document.getElementById('deposit-input');
+//common input function
+function getInputValue(inputId){
+    const depositInput = document.getElementById(inputId);
     const depositInputStr = depositInput.value;
     const depositInputNum =parseFloat(depositInputStr);
+    depositInput.value = '';
+    return depositInputNum;
+}
+
+
+// deposit button 
+document.getElementById('deposit-button').addEventListener('click',function() {
+    const depositValue =getInputValue('deposit-input');
 
     const depositField = document.getElementById('deposit-field');
     const depositFieldStr = depositField.innerText;
@@ -12,17 +20,15 @@ document.getElementById('deposit-button').addEventListener('click',function() {
     const balanceFieldStr = balanceField.innerText;
     const balanceFieldNum = parseFloat(balanceFieldStr);
     
-    depositField.innerText = depositInputNum + depositFieldNum;
-    balanceField.innerText = balanceFieldNum + depositInputNum;
+    depositField.innerText = depositValue + depositFieldNum;
+    balanceField.innerText = balanceFieldNum + depositValue;
 
-    depositInput.value = '';
+
 });
 
 // withdraw button 
 document.getElementById('withdraw-button').addEventListener('click',function(){
-    const withdrawInput = document.getElementById('withdraw-input');
-    const withdrawInputStr = withdrawInput.value;
-    const withdrawInputNum =parseFloat(withdrawInputStr);
+    const withdrawValue =getInputValue('withdraw-input');
 
     const withdrawField = document.getElementById('withdraw-field');
     const withdrawFieldStr = withdrawField.innerText;
@@ -32,8 +38,6 @@ document.getElementById('withdraw-button').addEventListener('click',function(){
     const balanceFieldStr = balanceField.innerText;
     const balanceFieldNum = parseFloat(balanceFieldStr);
 
-    withdrawField.innerText = withdrawInputNum + withdrawFieldNum;
-    balanceField.innerText = balanceFieldNum - withdrawInputNum;
-
-    withdrawInput.value = '';
+    withdrawField.innerText = withdrawValue + withdrawFieldNum;
+    balanceField.innerText = balanceFieldNum - withdrawValue;
 });
