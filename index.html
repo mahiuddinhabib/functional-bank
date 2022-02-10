@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>the hotel</title>
+    <!-- bootstrap css  -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+</head>
+<body>
+    <header><h1 class="text-center my-5">Let's get some <span class="fw-bolder text-primary">Moneyyyyyyyyy</span></h1>
+    </header>
+    <main>
+        <section class="mx-auto my-4 container-fluid row justify-content-center gap-1">
+            <div class="bg-warning col-3 p-4 text-white rounded">
+                <h5>Total Deposit</h5>
+                <h3 class="fw-bold">$<span id="deposit-field">00</span></h3>
+            </div>
+
+            <div class="bg-primary col-3 p-4 text-white rounded">
+                <h5>Total Withdraw</h5>
+                <h3 class="fw-bold">$<span id="withdraw-field">00</span></h3>
+            </div>
+            
+            <div class="bg-info col-3 p-4 text-white rounded">
+                <h5>Balance</h5>
+                <h3 class="fw-bold">$<span id="balance-field">500</span></h3>
+            </div>
+        </section>
+        <section class="container-fluid mx-auto row justify-content-center gap-4" >
+            <div class="bg-light col-4 p-4 text-center rounded border border-success">
+                <h4 class="text-success fw-bold">Please Deposit</h4>
+                <input id="deposit-input" type="text" class="my-3 p-2 fs-5 border border-success rounded text-success" placeholder="enter deposit amount"><br>
+                <button id="deposit-button" class="btn-success rounded fw-bold p-1">deposit</button>
+            </div>
+            <div class="bg-light col-4 p-4 text-center rounded border border-danger">
+                <h4 class="text-danger fw-bold">Please Withdraw</h4>
+                <input id="withdraw-input" type="text" class="my-3 p-2 fs-5 border border-danger rounded text-danger" placeholder="enter withdraw amount"><br>
+                <button id="withdraw-button" class="btn-danger rounded fw-bold p-1">withdraw</button>
+            </div>
+        </section>
+    </main>
+    
+    <!-- bootstrap js  -->
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <!-- my js  -->
+    <script src="js/functional-bank.js"></script>
+</body>
+</html>
