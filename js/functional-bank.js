@@ -1,26 +1,29 @@
 //common input function
 function getInputValue(inputId){
-    const depositInput = document.getElementById(inputId);
-    const depositInputStr = depositInput.value;
-    const depositInputNum =parseFloat(depositInputStr);
-    depositInput.value = '';
-    return depositInputNum;
+    const input = document.getElementById(inputId);
+    const inputStr = input.value;
+    const inputNum =parseFloat(inputStr);
+    input.value = '';
+    return inputNum;
 }
 
+//common transaction function
+function transaction(transactionId,inputValue){
+    const transactionField = document.getElementById(transactionId);
+    const transactionFieldStr = transactionField.innerText;
+    const transactionFieldNum = parseFloat(transactionFieldStr);
+    transactionField.innerText = inputValue + transactionFieldNum;
+}
 
 // deposit button 
 document.getElementById('deposit-button').addEventListener('click',function() {
     const depositValue =getInputValue('deposit-input');
 
-    const depositField = document.getElementById('deposit-field');
-    const depositFieldStr = depositField.innerText;
-    const depositFieldNum = parseFloat(depositFieldStr);
+    transaction('deposit-field',depositValue);
 
     const balanceField = document.getElementById('balance-field');
     const balanceFieldStr = balanceField.innerText;
     const balanceFieldNum = parseFloat(balanceFieldStr);
-    
-    depositField.innerText = depositValue + depositFieldNum;
     balanceField.innerText = balanceFieldNum + depositValue;
 
 
@@ -30,14 +33,10 @@ document.getElementById('deposit-button').addEventListener('click',function() {
 document.getElementById('withdraw-button').addEventListener('click',function(){
     const withdrawValue =getInputValue('withdraw-input');
 
-    const withdrawField = document.getElementById('withdraw-field');
-    const withdrawFieldStr = withdrawField.innerText;
-    const withdrawFieldNum = parseFloat(withdrawFieldStr);
+    transaction('withdraw-field',withdrawValue);
 
     const balanceField = document.getElementById('balance-field');
     const balanceFieldStr = balanceField.innerText;
     const balanceFieldNum = parseFloat(balanceFieldStr);
-
-    withdrawField.innerText = withdrawValue + withdrawFieldNum;
     balanceField.innerText = balanceFieldNum - withdrawValue;
 });
