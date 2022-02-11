@@ -15,11 +15,18 @@ function transaction(transactionId,inputValue){
     transactionField.innerText = inputValue + transactionFieldNum;
 }
 
-//balance function
-function balance(isAdd,inputValue){
+// check balanc function
+function checkBalance(){
     const balanceField = document.getElementById('balance-field');
     const balanceFieldStr = balanceField.innerText;
     const balanceFieldNum = parseFloat(balanceFieldStr);
+    return balanceFieldNum;
+}
+
+//balance function
+function balance(isAdd,inputValue){
+    const balanceField = document.getElementById('balance-field');
+    const balanceFieldNum = checkBalance();
     if(isAdd == true){
         balanceField.innerText = balanceFieldNum + inputValue;
     }
@@ -32,13 +39,27 @@ function balance(isAdd,inputValue){
 document.getElementById('deposit-button').addEventListener('click',function() {
     
     const depositValue =getInputValue('deposit-input');
-    transaction('deposit-field',depositValue);
-    balance(true,depositValue);
+    if(depositValue>0 && typeof depositValue=='number'){
+        transaction('deposit-field',depositValue);
+        balance(true,depositValue);
+    }
+    else{
+        alert('please enter a valid amount');
+    }
 });
 
 // withdraw button 
 document.getElementById('withdraw-button').addEventListener('click',function(){
     const withdrawValue =getInputValue('withdraw-input');
-    transaction('withdraw-field',withdrawValue);
-    balance(false,withdrawValue);
+    
+    if(withdrawValue>checkBalance()){
+        alert("withdraw amount can't be more than balance")
+    }
+    else if(withdrawValue>0 && typeof withdrawValue =='number'){
+        transaction('withdraw-field',withdrawValue);
+        balance(false,withdrawValue);
+    }
+    else{
+        alert('please enter a valid amount');
+    }
 });
