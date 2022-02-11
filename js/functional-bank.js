@@ -15,28 +15,30 @@ function transaction(transactionId,inputValue){
     transactionField.innerText = inputValue + transactionFieldNum;
 }
 
-// deposit button 
-document.getElementById('deposit-button').addEventListener('click',function() {
-    const depositValue =getInputValue('deposit-input');
-
-    transaction('deposit-field',depositValue);
-
+//balance function
+function balance(isAdd,inputValue){
     const balanceField = document.getElementById('balance-field');
     const balanceFieldStr = balanceField.innerText;
     const balanceFieldNum = parseFloat(balanceFieldStr);
-    balanceField.innerText = balanceFieldNum + depositValue;
+    if(isAdd == true){
+        balanceField.innerText = balanceFieldNum + inputValue;
+    }
+    else{
+        balanceField.innerText = balanceFieldNum - inputValue;
+    }
+}
 
-
+// deposit button 
+document.getElementById('deposit-button').addEventListener('click',function() {
+    
+    const depositValue =getInputValue('deposit-input');
+    transaction('deposit-field',depositValue);
+    balance(true,depositValue);
 });
 
 // withdraw button 
 document.getElementById('withdraw-button').addEventListener('click',function(){
     const withdrawValue =getInputValue('withdraw-input');
-
     transaction('withdraw-field',withdrawValue);
-
-    const balanceField = document.getElementById('balance-field');
-    const balanceFieldStr = balanceField.innerText;
-    const balanceFieldNum = parseFloat(balanceFieldStr);
-    balanceField.innerText = balanceFieldNum - withdrawValue;
+    balance(false,withdrawValue);
 });
